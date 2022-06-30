@@ -1,0 +1,115 @@
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe.config
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.pdb
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.dll
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.dll
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.dll
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.dll
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.dll
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.xml
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.xml
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.xml
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.xml
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.xml
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.xml
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.ProcessTp1.resources
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.Properties.Resources.resources
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csproj.GenerateResource.Cache
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.exe
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.pdb
+C:\Users\phuong\Documents\Visual Studio 2015\Projects\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csprojResolveAssemblyReference.cache
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe.config
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.exe
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.pdb
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.pdb
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csprojResolveAssemblyReference.cache
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.ProcessTp1.resources
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.Properties.Resources.resources
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csproj.GenerateResource.Cache
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Buffers.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Buffers.xml
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\SharpCompress.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+H:\code chuan\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe.config
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.pdb
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\SharpCompress.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Buffers.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Buffers.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csprojAssemblyReference.cache
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.ProcessTp1.resources
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.Properties.Resources.resources
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csproj.GenerateResource.cache
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csproj.CoreCompileInputs.cache
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csproj.CopyComplete
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.exe
+H:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.pdb
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe.config
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.exe
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.pdb
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\SharpCompress.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Buffers.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Newtonsoft.Json.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Snappy.NET.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Buffers.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csprojResolveAssemblyReference.cache
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.ProcessTp1.resources
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.Properties.Resources.resources
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessJICA.csproj.GenerateResource.Cache
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.exe
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\obj\Debug\ProcessAWS.pdb
