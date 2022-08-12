@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MobileAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CategoryNews">
+    <Key>
+      <PropertyRef Name="CategoryNewID" />
+    </Key>
+    <Property Name="CategoryNewID" Type="int" Nullable="false" />
+    <Property Name="CategoryNewName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Languages_ID" Type="int" />
+    <Property Name="IsFree" Type="bit" />
+    <Property Name="CategoryNew_ParrentID" Type="int" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tittle" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Content" Type="ntext" />
+    <Property Name="CategoryNewID" Type="int" Nullable="false" />
+    <Property Name="Date_Created" Type="datetime" Nullable="false" />
+    <Property Name="Date_Modify" Type="datetime" Nullable="false" />
+    <Property Name="StatusID" Type="smallint" Nullable="false" />
+    <Property Name="Date_Publisher" Type="datetime" />
+    <Property Name="DateForecast" Type="datetime" />
+    <Property Name="Languages_ID" Type="int" />
+    <Property Name="EDITTEDCONTENT" Type="ntext" />
+  </EntityType>
+  <Association Name="FK_News_GroupNews">
+    <End Role="CategoryNews" Type="Self.CategoryNews" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryNews">
+        <PropertyRef Name="CategoryNewID" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="CategoryNewID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MobileAppModelStoreContainer">
+    <EntitySet Name="CategoryNews" EntityType="Self.CategoryNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_News_GroupNews" Association="Self.FK_News_GroupNews">
+      <End Role="CategoryNews" EntitySet="CategoryNews" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

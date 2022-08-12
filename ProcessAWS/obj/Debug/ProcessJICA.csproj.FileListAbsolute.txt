@@ -88,6 +88,8 @@ F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debu
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\ProcessAWS.pdb
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.dll
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\EntityFramework.dll
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\EntityFramework.SqlServer.dll
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.dll
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.dll
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.Core.dll
@@ -99,6 +101,8 @@ F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debu
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\Crc32C.NET.xml
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\DnsClient.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\EntityFramework.xml
+F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\EntityFramework.SqlServer.xml
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\log4net.xml
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Bson.xml
 F:\WORKING2\coquan\2021_DuanJICA\XuLyDuLieu\ProcessJICA_DATA\ProcessAWS\bin\Debug\MongoDB.Driver.xml

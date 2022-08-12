@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MobileAppModelStoreContainer" CdmEntityContainer="MobileAppEntities">
+    <EntitySetMapping Name="CategoryNews">
+      <EntityTypeMapping TypeName="MobileAppModel.CategoryNew">
+        <MappingFragment StoreEntitySet="CategoryNews">
+          <ScalarProperty Name="CategoryNewID" ColumnName="CategoryNewID" />
+          <ScalarProperty Name="CategoryNewName" ColumnName="CategoryNewName" />
+          <ScalarProperty Name="Languages_ID" ColumnName="Languages_ID" />
+          <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+          <ScalarProperty Name="CategoryNew_ParrentID" ColumnName="CategoryNew_ParrentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="MobileAppModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+          <ScalarProperty Name="Tittle" ColumnName="Tittle" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="CategoryNewID" ColumnName="CategoryNewID" />
+          <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+          <ScalarProperty Name="Date_Modify" ColumnName="Date_Modify" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Date_Publisher" ColumnName="Date_Publisher" />
+          <ScalarProperty Name="DateForecast" ColumnName="DateForecast" />
+          <ScalarProperty Name="Languages_ID" ColumnName="Languages_ID" />
+          <ScalarProperty Name="EDITTEDCONTENT" ColumnName="EDITTEDCONTENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

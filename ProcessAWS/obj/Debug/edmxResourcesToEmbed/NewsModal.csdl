@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MobileAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CategoryNew">
+    <Key>
+      <PropertyRef Name="CategoryNewID" />
+    </Key>
+    <Property Name="CategoryNewID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryNewName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Languages_ID" Type="Int32" />
+    <Property Name="IsFree" Type="Boolean" />
+    <Property Name="CategoryNew_ParrentID" Type="Int32" />
+    <NavigationProperty Name="News" Relationship="Self.FK_News_GroupNews" FromRole="CategoryNews" ToRole="News" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tittle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Summary" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryNewID" Type="Int32" Nullable="false" />
+    <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Date_Modify" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusID" Type="Int16" Nullable="false" />
+    <Property Name="Date_Publisher" Type="DateTime" Precision="3" />
+    <Property Name="DateForecast" Type="DateTime" Precision="3" />
+    <Property Name="Languages_ID" Type="Int32" />
+    <Property Name="EDITTEDCONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CategoryNew" Relationship="Self.FK_News_GroupNews" FromRole="News" ToRole="CategoryNews" />
+  </EntityType>
+  <Association Name="FK_News_GroupNews">
+    <End Role="CategoryNews" Type="Self.CategoryNew" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryNews">
+        <PropertyRef Name="CategoryNewID" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="CategoryNewID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MobileAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CategoryNews" EntityType="Self.CategoryNew" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <AssociationSet Name="FK_News_GroupNews" Association="Self.FK_News_GroupNews">
+      <End Role="CategoryNews" EntitySet="CategoryNews" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

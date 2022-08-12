@@ -28,3 +28,15 @@
 	 
 
 	   !!! need to care loopforever
+
+
+
+#check bản tin hết hạn hay chưa ở mongo
+   get data from mongodb with status ==6
+   get 
+
+      
+
+#check bản tin mới (còn hiệu lực) ở 32
+   get bản tin ở 32
+   insert to mo

@@ -17,20 +17,21 @@ using LeanWork.IO.FileSystem;
 using Newtonsoft.Json;
 using MongoDB.Driver;
 using MongoDB.Bson;
-
+using System.Globalization;
+using System.Timers;
 
 namespace ProcessAWS
 {
     public partial class ProcessTp1 : Form
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public  string _sourceJica;
+        public string _sourceJica;
 
         ConcurrentQueue<string> Queue = new ConcurrentQueue<string>();
         private bool _isError = false;
         private DateTime _beginError = new DateTime();
         public Dictionary<string, int> Config = new Dictionary<string, int>();
-        public  string ConfigFile;
+        public string ConfigFile;
         public string Total10MJsonFile;
         public string Total1HJsonFile;
         static MongoClient _dbClient;
@@ -40,6 +41,7 @@ namespace ProcessAWS
         private IMongoCollection<BsonDocument> collection10m;
         private IMongoCollection<BsonDocument> collection1h;
         private IMongoCollection<BsonDocument> collection1day;
+        private IMongoCollection<BsonDocument> collectionNews;
 
         public string Total1HJsonFolder = " ";
         public string Total10MJsonFolder = " ";
@@ -47,22 +49,22 @@ namespace ProcessAWS
         {
             InitializeComponent();
             MongoSetup();
-         
-        //    var sourceDongBac = ConfigurationManager.AppSettings["SourceDongBac"];
-        //   var sourceBtb = ConfigurationManager.AppSettings["SourceBTB"];
-        //   var sourceVb = ConfigurationManager.AppSettings["SourceVB"];
-        //    var sourceTb = ConfigurationManager.AppSettings["SourceTB"];
-        //    var sourceDongBang = ConfigurationManager.AppSettings["SourceDongBang"];
-        //  DaiKhuVuc = new Dictionary<string, string>()
-        //{
-        //    {"NorthWest",sourceTb},
-        //    {"VietBac",sourceVb },
-        //    {"Northen Delta",sourceDongBang },
-        //    {"NorthCentral",sourceBtb },
-        //    {"NorthEast",sourceDongBac}
-        //};
 
-    }
+            //    var sourceDongBac = ConfigurationManager.AppSettings["SourceDongBac"];
+            //   var sourceBtb = ConfigurationManager.AppSettings["SourceBTB"];
+            //   var sourceVb = ConfigurationManager.AppSettings["SourceVB"];
+            //    var sourceTb = ConfigurationManager.AppSettings["SourceTB"];
+            //    var sourceDongBang = ConfigurationManager.AppSettings["SourceDongBang"];
+            //  DaiKhuVuc = new Dictionary<string, string>()
+            //{
+            //    {"NorthWest",sourceTb},
+            //    {"VietBac",sourceVb },
+            //    {"Northen Delta",sourceDongBang },
+            //    {"NorthCentral",sourceBtb },
+            //    {"NorthEast",sourceDongBac}
+            //};
+
+        }
         private void MongoSetup()
         {
             //const string username = "ai";
@@ -87,18 +89,22 @@ namespace ProcessAWS
             string pemLocation = Path.Combine(executableLocation, "weathervietnam.vn.pem");
             string srtLocation = Path.Combine(executableLocation, "weathervietnam.vn.crt");
             //ssl setup
-            string connectionString =
-                @"mongodb://mongo4.weathervietnam.vn:60004,mongo5.weathervietnam.vn:60005,mongo6.weathervietnam.vn:60006,mongo7.weathervietnam.vn:60007/?replicaSet=replicaAws&ssl=true&tlsAllowInvalidCertificates=true&ssl_ca_certs=" +
-               srtLocation+ "&ssl_certfile=" + pemLocation;
+            //string connectionString =
+            //    @"mongodb://mongo4.weathervietnam.vn:60004,mongo5.weathervietnam.vn:60005,mongo6.weathervietnam.vn:60006,mongo7.weathervietnam.vn:60007/?replicaSet=replicaAws&ssl=true&tlsAllowInvalidCertificates=true&ssl_ca_certs=" +
+            //   srtLocation+ "&ssl_certfile=" + pemLocation;
+            string connectionString = "mongodb://admin:cnTT%400258@tckttvmongo4.weathervietnam.vn:62004,tckttvmongo5.weathervietnam.vn:62005,tckttvmongo6.weathervietnam.vn:62006,tckttvmongo7.weathervietnam.vn:62007/?replicaSet=replicaTCkttv";
+
             MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
+
             //Disable certificate verification, if it is not issued for you
-            settings.VerifySslCertificate = false;
+            //settings.VerifySslCertificate = false;
             _dbClient = new MongoClient(settings);
 
-            database = _dbClient.GetDatabase("jica");
+            database = _dbClient.GetDatabase("jica-backend");
             collection10m = database.GetCollection<BsonDocument>("rain10m");
-             collection1h = database.GetCollection<BsonDocument>("rain1h");
-           collection1day = database.GetCollection<BsonDocument>("rain1day");
+            collection1h = database.GetCollection<BsonDocument>("rain1h");
+            collection1day = database.GetCollection<BsonDocument>("rain1day");
+            collectionNews = database.GetCollection<BsonDocument>("news");
 
         }
         private void ProcessTP1_Load(object sender, EventArgs e)
@@ -109,28 +115,32 @@ namespace ProcessAWS
             Total10MJsonFolder = ConfigurationManager.AppSettings["rainToTal10mFolder"];
 
             //luc khoi dong thi lay lai file cu trong vong 2 tieng
-            Thread t = new Thread(() => ProcessErrorWatcher(_sourceJica, DateTime.Now.AddHours(-3),".dat")) { IsBackground = true };
+            Thread t = new Thread(() => ProcessErrorWatcher(_sourceJica,".dat")) { IsBackground = true };
             t.Start();
+            UpdateNews();
+            System.Timers.Timer timer =new System.Timers.Timer();
+            timer.Interval = 5*60*1000;
+            timer.Enabled = true;
+            timer.Elapsed += timerGetNews_Tick;
+            timer.Start();
 
             //start watcher
 
             RunRecoveringWatcher(_sourceJica, ".dat");
 
-            //foreach (var key in DaiKhuVuc.Keys)
-            //{
-            //    var path = DaiKhuVuc[key];
-            //    RunRecoveringWatcher(path, ".txt");
-            //    Thread n = new Thread(() => ProcessErrorWatcher(path, DateTime.Now.AddHours(-3), ".txt")) { IsBackground = true };
-            //    n.Start();
-            //}
 
-            // xu ly queue
+
+            //// xu ly queue
             Thread processQueue = new Thread(DeQueue) { IsBackground = true };
             processQueue.Start();
-            
+
             //connect mongo lay danh sach station cho vao list
         }
-        public void RunRecoveringWatcher(string sourceFolder,string filter)
+        public void timerGetNews_Tick(object sender, EventArgs e)
+        {
+            UpdateNews();
+        }
+        public void RunRecoveringWatcher(string sourceFolder, string filter)
         {
 
             var watcher = new RecoveringFileSystemWatcher(sourceFolder);
@@ -138,7 +148,7 @@ namespace ProcessAWS
             watcher.IncludeSubdirectories = true;
             watcher.NotifyFilter = NotifyFilters.FileName
                                            | NotifyFilters.Size;
-            watcher.Filter ="*"+ filter;
+            watcher.Filter = "*" + filter;
             watcher.All += (_, e) =>
             {
                 if (_isError == true)
@@ -146,7 +156,7 @@ namespace ProcessAWS
                     _isError = false;
                     new Thread(() =>
                     {
-                        ProcessErrorWatcher(sourceFolder, _beginError, filter);
+                        ProcessErrorWatcher(sourceFolder, filter);
                     }).Start();
 
                 }
@@ -184,7 +194,7 @@ namespace ProcessAWS
             {
                 Queue.Enqueue(path);
             }
-           
+
         }
         //showlog
         public void ShowLog(string data)
@@ -195,32 +205,32 @@ namespace ProcessAWS
             rtb_Log.AppendText(data);
         }
 
-        public void ProcessErrorWatcher(string sourceFolder, DateTime beginError, string filter)
+        public void ProcessErrorWatcher(string sourceFolder, string filter)
         {
             Invoke((MethodInvoker)delegate
             {
                 ShowLog(String.Format("Xử lý file cũ...\n"));
             });
-            var lstMissingFiles = GetMissingFiles(sourceFolder, beginError, filter);
+            var lstMissingFiles = GetMissingFiles(sourceFolder, filter);
             foreach (var file in lstMissingFiles)
             {
-             
-                if (!Queue.Contains(file.FullName)&& file.Extension == filter)
+
+                if (!Queue.Contains(file.FullName) && file.Extension == filter)
                 {
-                    
+
                     Queue.Enqueue(file.FullName);
                 }
             }
         }
         //ham get file bi thieu luc network down
 
-        public FileInfo[] GetMissingFiles(string folder, DateTime beginError, string filter)
+        public FileInfo[] GetMissingFiles(string folder, string filter)
         {
             //var lstFileInfos = new List<FileInfo>();
             DirectoryInfo dirInfo = new DirectoryInfo(folder);
-            FileInfo[] lstFiles = dirInfo.EnumerateFiles("*"+filter, SearchOption.AllDirectories)
+            FileInfo[] lstFiles = dirInfo.EnumerateFiles("*" + filter, SearchOption.AllDirectories)
             .AsParallel()
-            .Where(x => x.LastWriteTime >= beginError).ToArray();
+            .ToArray();
             return lstFiles;
         }
 
@@ -253,7 +263,7 @@ namespace ProcessAWS
         //Thread Write2Rain19h;
         //Thread Write2Rain24h;
 
-       
+
         // ham xu ly 1 file
         public void ProcessOne(string path)
         {
@@ -278,11 +288,11 @@ namespace ProcessAWS
             }
             using (File.Create(jsonFile))
             {
-                return new Dictionary<string,float>();
+                return new Dictionary<string, float>();
             }
         }
 
-        public void WriteRainToTalFile(string jsonFile,  Dictionary<string, float> jsonData)
+        public void WriteRainToTalFile(string jsonFile, Dictionary<string, float> jsonData)
         {
             string strJson = JsonConvert.SerializeObject(jsonData);
             using (var fs = TryCreateFileStream(jsonFile, FileMode.OpenOrCreate, FileAccess.ReadWrite,
@@ -300,7 +310,12 @@ namespace ProcessAWS
         /// <param name="path"></param>
         public void ProcessJica(string path)
         {
+
             var filename = Path.GetFileName(path);
+            if (!filename.Contains("vietnam_st"))
+            {
+                return;
+            };
             var currentLine = 0;
             if (Config.ContainsKey(filename))
             {
@@ -335,10 +350,10 @@ namespace ProcessAWS
             {
                 var lines = File.ReadAllLines(path);
                 lines = lines.Skip(currentLine).ToArray();
-         
+
                 foreach (var line in lines)
                 {
-                   
+
                     try
                     {
                         if (string.IsNullOrEmpty(line))
@@ -348,22 +363,22 @@ namespace ProcessAWS
                         var listData = line.Split(',');
                         var obj = new JSON();
                         obj.StationNo = listData[0];
-                       
-                        
+
+
                         DateTime dt = DateTime.ParseExact(listData[5] + listData[4] + listData[3] + " " + listData[2],
                             "yyyyMMdd HH.mm.ss", null);
                         //var dt = new DateTime(listData[5],listData[4], 15, 16, 10, 00);
                         var utc = TimeZoneInfo.ConvertTimeToUtc(dt, VietNamTimeZone);
-                       
+
                         obj.CreateTime = DateTime.UtcNow;
                         obj.UpdateTime = DateTime.UtcNow;
                         obj.DataTime = utc;
-                        obj.Value = float.Parse(listData[10]);
-                        var strDateTimeUtcFile = Total10MJsonFolder +"\\"+ utc.ToString("yyyyMMdd") + ".json";
+                        obj.Value = float.Parse(listData[10], CultureInfo.InvariantCulture.NumberFormat);
+                        var strDateTimeUtcFile = Total10MJsonFolder + "\\" + utc.ToString("yyyyMMdd") + ".json";
                         var datetimeRainTotal = CalRainToTal(strDateTimeUtcFile);
-                       
-                         //check stationid co ton tai khong thi tao moi va gan gia tri total rain
-                     
+
+                        //check stationid co ton tai khong thi tao moi va gan gia tri total rain
+
                         if (!datetimeRainTotal.ContainsKey(obj.StationNo))
                         {
 
@@ -382,13 +397,13 @@ namespace ProcessAWS
                         Invoke((MethodInvoker)delegate
                         {
                             ShowLog(String.Format(ex.GetType().ToString()));
-                            ShowLog(String.Format("Không đọc được file: " + path + "\n" ));
+                            ShowLog(String.Format("Không đọc được file: " + path + "\n"));
                         });
 
-                        log.Debug("file " + path + " không đúng định dạng " + path +"__"+ line +"\n");
+                        log.Debug("file " + path + " không đúng định dạng " + path + "__" + line + "\n");
                         return;
                     }
-                    
+
 
 
                 }
@@ -429,11 +444,11 @@ namespace ProcessAWS
                             "yyyyMMdd HH.mm.ss", null);
                         //var dt = new DateTime(listData[5],listData[4], 15, 16, 10, 00);
                         var utc = TimeZoneInfo.ConvertTimeToUtc(dt, VietNamTimeZone);
-                       
+
                         obj.DataTime = utc;
                         obj.CreateTime = DateTime.UtcNow;
                         obj.UpdateTime = DateTime.UtcNow;
-                        obj.Value = float.Parse(listData[10]);
+                        obj.Value = float.Parse(listData[10], CultureInfo.InvariantCulture.NumberFormat);
                         var strDateTimeUtcFile = Total1HJsonFolder + "\\" + utc.ToString("yyyyMMdd") + ".json";
                         var datetimeRainTotal = CalRainToTal(strDateTimeUtcFile);
 
@@ -449,7 +464,7 @@ namespace ProcessAWS
                         InsertToMongo(obj, collection1h);
                         datetimeRainTotal[obj.StationNo] = obj.RainTotal;
                         WriteRainToTalFile(strDateTimeUtcFile, datetimeRainTotal);
-                        UpdateRain(collection1day, utc, obj.Value, obj.StationNo,true);
+                        UpdateRain(collection1day, utc, obj.Value, obj.StationNo, true);
                         currentLine++;
                     }
                     catch (Exception ex)
@@ -483,12 +498,12 @@ namespace ProcessAWS
             }
         }
 
-        public void UpdateRain(IMongoCollection<BsonDocument> rain1Day, DateTime utc,float value,string stationId,bool day)
+        public void UpdateRain(IMongoCollection<BsonDocument> rain1Day, DateTime utc, float value, string stationId, bool day)
         {
             try
             {
-                
-                var date = day ? new DateTime(utc.Year, utc.Month, utc.Day, 0, 0, 0, DateTimeKind.Utc)  : new DateTime(utc.Year,utc.Month,utc.Day,utc.Hour,0,0, DateTimeKind.Utc) ;
+
+                var date = day ? new DateTime(utc.Year, utc.Month, utc.Day, 0, 0, 0, DateTimeKind.Utc) : new DateTime(utc.Year, utc.Month, utc.Day, utc.Hour, 0, 0, DateTimeKind.Utc);
                 var filter = Builders<BsonDocument>.Filter.Eq("DateTime", date) &
                              Builders<BsonDocument>.Filter.Eq("StationID", stationId);
                 var data = rain1Day.Find(filter).FirstOrDefault();
@@ -523,7 +538,7 @@ namespace ProcessAWS
                     log.Debug("Không insert được vào mongodb rain1day \n" + ex.Message);
                 });
             }
-            
+
         }
         public void InsertToMongo(JSON obj, IMongoCollection<BsonDocument> collection)
         {
@@ -549,8 +564,8 @@ namespace ProcessAWS
                     ShowLog(String.Format("Không insert được vào mongodb \n"));
                     log.Debug("Không insert được vào mongodb \n" + ex.Message);
                 });
-               
-               
+
+
             }
         }
 
@@ -570,7 +585,7 @@ namespace ProcessAWS
                 String[] data = myString.Split(' ');
                 if (CheckIfNull(path, data[0])) { return; };
                 stationNo = data[0];
-                var obs = float.Parse(data[3]);
+                var obs = float.Parse(data[3], CultureInfo.InvariantCulture.NumberFormat);
                 DateTime datetimeEnd;
                 if (data[2].Substring(8, 2) == "24")
                 {
@@ -584,22 +599,22 @@ namespace ProcessAWS
 
                 datetimeBegin = datetimeEnd.AddMinutes(obs * -1);
                 //obj.PrjID = 7;
-                rainObs = float.Parse(data[6]);
+                rainObs = float.Parse(data[6], CultureInfo.InvariantCulture.NumberFormat);
                 if (CheckIfNull(path, data[4])) { return; };
-               
-                    try
-                    {
+
+                try
+                {
                     var sumRain10M = 0f;
                     // var lstRain10m = Deserialize(rain10minJsonFile);
                     for (int i = 1; i <= obs / 10; i++)
-                        {
-                            if (CheckIfNull(path, data[i + 7])) { return; }
-                            value = float.Parse(data[i + 7]) / 10;
+                    {
+                        if (CheckIfNull(path, data[i + 7])) { return; }
+                        value = float.Parse(data[i + 7], CultureInfo.InvariantCulture.NumberFormat) / 10;
 
-                            var obj10M = CreateObj(stationNo, datetimeBegin.AddMinutes(10*i), value);
-                            InsertToMongo(obj10M, collection10m);
-                            sumRain10M = sumRain10M + value;
-                        }
+                        var obj10M = CreateObj(stationNo, datetimeBegin.AddMinutes(10 * i), value);
+                        InsertToMongo(obj10M, collection10m);
+                        sumRain10M = sumRain10M + value;
+                    }
                     if (Math.Abs(sumRain10M - rainObs) > 0.00001)
                     {
                         if (Math.Abs(sumRain10M - rainObs / 10) < 0.00001)
@@ -613,31 +628,31 @@ namespace ProcessAWS
                         }
 
                     }
-                        if (Math.Abs(obs - 60) < 0.0001)
-                        {
-                            var obj1H = CreateObj(stationNo, datetimeEnd, rainObs);
-                            InsertToMongo(obj1H, collection1h);
-                        }
-                        else
-                        {
-                            UpdateRain(collection1h, datetimeEnd, rainObs, stationNo, false);
-                        }
-                    
-                        UpdateRain(collection1day, datetimeEnd, rainObs, stationNo, true);
+                    if (Math.Abs(obs - 60) < 0.0001)
+                    {
+                        var obj1H = CreateObj(stationNo, datetimeEnd, rainObs);
+                        InsertToMongo(obj1H, collection1h);
+                    }
+                    else
+                    {
+                        UpdateRain(collection1h, datetimeEnd, rainObs, stationNo, false);
+                    }
+
+                    UpdateRain(collection1day, datetimeEnd, rainObs, stationNo, true);
 
 
                 }
 
-                    catch (Exception ex)
+                catch (Exception ex)
+                {
+                    Invoke((MethodInvoker)delegate
                     {
-                        Invoke((MethodInvoker)delegate
-                        {
-                            ShowLog(String.Format("Không đọc được file: " + path + "\n"));
-                            log.Debug("file " + path + " không đúng định dạng " + ex.Message +"\n");
-                        });
-                        return;
-                    }
- 
+                        ShowLog(String.Format("Không đọc được file: " + path + "\n"));
+                        log.Debug("file " + path + " không đúng định dạng " + ex.Message + "\n");
+                    });
+                    return;
+                }
+
             }
 
             catch (Exception ex)
@@ -655,7 +670,7 @@ namespace ProcessAWS
             });
         }
 
-       
+
 
 
         public JSON CreateObj(string stationNo, DateTime datatime, float value)
@@ -663,7 +678,7 @@ namespace ProcessAWS
             var obj = new JSON();
             obj.StationNo = stationNo;
 
-           
+
             var utc = TimeZoneInfo.ConvertTimeToUtc(datatime, VietNamTimeZone);
             obj.Value = value;
             obj.DataTime = utc;
@@ -719,7 +734,137 @@ namespace ProcessAWS
         }
 
         //gửi dữ liệu
+        private string editContent(string content)
+        {
+            //	https://thoitietvietnam.gov.vn/
+            if (content.Contains("<img") && content.Contains("src"))
+            {
+                content = content.Replace("src=\"", "src=\"https://thoitietvietnam.gov.vn");
+               
+            }
+            return content;
 
+        }
+        public void UpdateNews()
+        {
+            MobileAppEntities db = new MobileAppEntities();
+            var res = from c in db.News where c.StatusID == 6 select new { code = c.NewsID, title = c.Tittle, content = c.Content, created_at = c.Date_Created, updated_at = c.Date_Modify, validated_from = c.Date_Modify, StatusID = c.StatusID, category_name = c.CategoryNew.CategoryNewName, category_code = c.CategoryNewID };
+            var news = res.ToList();
+            var filterNews = Builders<BsonDocument>.Filter.Eq("status", "active");
+            var newsMongo = collectionNews.Find(filterNews).ToList();
+
+            foreach (var tintuc in news)
+            {
+                try
+                {
+                    string title = tintuc.title;
+                    string content = tintuc.content;
+                    content = editContent(content);
+                    var filter = Builders<BsonDocument>.Filter.Eq("code", tintuc.code);
+                    var data = collectionNews.Find(filter).FirstOrDefault();
+                    if (data != null)
+                    {
+                        
+
+                        var update = Builders<BsonDocument>.Update.Set("status", "active").Set("title", title).Set("content", content);
+                        collectionNews.UpdateOne(filter, update);
+
+                        Invoke((MethodInvoker)delegate
+                        {
+
+                            ShowLog(String.Format("Cập nhật thành công bản tin\n"));
+
+                        });
+                    }
+                    else
+                    {
+                        var doc = new BsonDocument
+            {
+                            {"code",tintuc.code.ToString() },
+                {"status","active" },
+                {"title",  title},
+                {"created_at",tintuc.created_at},
+                {"updated_at",tintuc.updated_at},
+                {"validated_from",tintuc.validated_from},
+                      {"content",content},
+                      {"category_code",tintuc.category_code},
+                      {"category_name",tintuc.category_name},
+                            //{"validated_to","" },
+                            //    {"link","" }
+
+            };
+                        collectionNews.InsertOne(doc);
+                        Invoke((MethodInvoker)delegate
+                        {
+
+                            ShowLog(String.Format("Thêm thành công bản tin\n"));
+
+                        });
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    Invoke((MethodInvoker)delegate
+                    {
+                        ShowLog(String.Format(ex.GetType().ToString()));
+                        ShowLog(String.Format("Không insert được vào mongodb news\n"));
+                        log.Debug("Không insert được vào mongodb news \n" + ex.Message);
+                    });
+                }
+
+            }
+
+            foreach (var tintucMG in newsMongo)
+            {
+                try
+                {
+                    string code = tintucMG["code"].AsString;
+                    var data = from c in db.News
+                               where c.NewsID.ToString() == code
+
+                               select c;
+                    var reslt = data.ToList();
+
+                    if (reslt.Count() != 0 )
+                    {
+                        if(reslt[0].StatusID == 4)
+                        {
+                            var update = Builders<BsonDocument>.Update.Set("status", "inactive");
+                            collectionNews.UpdateOne(tintucMG, update);
+
+                            Invoke((MethodInvoker)delegate
+                            {
+
+                                ShowLog(String.Format("Cập nhật thành công bản tin\n"));
+
+                            });
+                        }
+                        
+
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Invoke((MethodInvoker)delegate
+                    {
+                        ShowLog(String.Format(ex.GetType().ToString()));
+                        ShowLog(String.Format("Không cập nhật được bản tin news\n"));
+                        log.Debug("Không cập nhật được bản tin news \n" + ex.Message);
+                    });
+                }
+
+
+            }
+
+        }
 
     }
+
+
+
 }
