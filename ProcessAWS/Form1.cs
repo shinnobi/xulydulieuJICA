@@ -104,8 +104,7 @@ namespace ProcessAWS
             collection10m = database.GetCollection<BsonDocument>("rain10m");
             collection1h = database.GetCollection<BsonDocument>("rain1h");
             collection1day = database.GetCollection<BsonDocument>("rain1day");
-            collectionNews = database.GetCollection<BsonDocument>("news");
-
+            collectionNews = database.GetCollection<BsonDocument>("news");        
         }
         private void ProcessTP1_Load(object sender, EventArgs e)
         {
