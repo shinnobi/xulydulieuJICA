@@ -92,7 +92,7 @@ namespace ProcessAWS
             //string connectionString =
             //    @"mongodb://mongo4.weathervietnam.vn:60004,mongo5.weathervietnam.vn:60005,mongo6.weathervietnam.vn:60006,mongo7.weathervietnam.vn:60007/?replicaSet=replicaAws&ssl=true&tlsAllowInvalidCertificates=true&ssl_ca_certs=" +
             //   srtLocation+ "&ssl_certfile=" + pemLocation;
-            string connectionString = "mongodb://admin:cnTT%400258@tckttvmongo4.weathervietnam.vn:62004,tckttvmongo5.weathervietnam.vn:62005,tckttvmongo6.weathervietnam.vn:62006,tckttvmongo7.weathervietnam.vn:62007/?replicaSet=replicaTCkttv";
+            string connectionString = "mongodb://admin:cnTT%400258@tckttvmongo4.weathervietnam.vn:62004,tckttvmongo5.weathervietnam.vn:62005,tckttvmongo6.weathervietnam.vn:62006,tckttvmongo7.weathervietnam.vn:62007/?replicaSet=replicaTCkttv&authSource=admin";
 
             MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
 
